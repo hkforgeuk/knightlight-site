@@ -145,10 +145,10 @@ const mixed = []; for (let i = 0; mixed.length < soon.length; i++) for (const k 
 
 // HOME
 emit('/', { title: 'Knightlight Books · Stories worth getting lost in', body: `
-<section class="hero"${S.hero_image ? ` style="background-image:linear-gradient(90deg,rgba(17,16,19,.94),rgba(17,16,19,.55)),url('${esc(S.hero_image)}')"` : ''}><div class="wrap hero-in">
+<section class="hero${S.hero_image ? ' hero-img' : ''}"${S.hero_image ? ` style="--hero:url('${esc(S.hero_image)}')"` : ''}><div class="wrap hero-in">
 <div class="hero-copy"><p class="eyebrow">Independent publishing house</p><h1>${esc(S.tagline)}</h1><p class="lead">${esc(S.intro)} Buy the ePub direct and read it on any device.</p>
 <div class="btns"><a class="btn btn-lg" href="/books/">Browse the books</a><a class="btn-o btn-lg" href="#reading-list">Join the reading list</a></div></div>
-<img class="hero-logo" src="/img/logo-main.jpg" alt="Knightlight Books, Publishing House" width="1200" height="505"></div></section>
+${S.hero_image ? '' : '<img class="hero-logo" src="/img/logo-main.jpg" alt="Knightlight Books, Publishing House" width="1200" height="505">'}</div></section>
 <section class="trust"><div class="wrap grid3"><span>Buy direct: instant ePub download</span><span>Reads on Kindle, Kobo, Apple Books and more</span><span>Also on Kobo, Google Play and Amazon</span></div></section>
 ${featured ? `<section class="wrap sec"><p class="eyebrow">New release</p><div class="feature">
 <a class="lc lc-big lit" href="/books/${featured.slug}/">${lamp}${coverImg(featured)}</a>
