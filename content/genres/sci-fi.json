@@ -1,0 +1,17 @@
+{
+  "slug": "sci-fi",
+  "name": "Sci-Fi",
+  "imprint": "Knightlight Sci-Fi",
+  "tagline": "Into the long dark",
+  "order": 2,
+  "instagram": "https://www.instagram.com/knightlightscifi/",
+  "description": "Big-canvas science fiction: deep-space exploration, first contact, politics and survival.",
+  "subgenres": [
+    {
+      "slug": "space-opera",
+      "name": "Space Opera",
+      "description": "Ships, colonies and the long dark between the stars.",
+      "adult": false
+    }
+  ]
+}

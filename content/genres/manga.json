@@ -1,0 +1,17 @@
+{
+  "slug": "manga",
+  "name": "Manga",
+  "imprint": "Knightlight Manga",
+  "tagline": "Illustrated adventures for ages 10–16",
+  "order": 4,
+  "instagram": "https://www.instagram.com/knightlightmanga/",
+  "description": "Manga-style illustrated novels: lots of story, with art on every few pages.",
+  "subgenres": [
+    {
+      "slug": "fantasy-adventure",
+      "name": "Fantasy Adventure",
+      "description": "Bonds, beasts and hidden worlds.",
+      "adult": false
+    }
+  ]
+}

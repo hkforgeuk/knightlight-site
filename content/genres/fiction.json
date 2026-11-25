@@ -1,0 +1,29 @@
+{
+  "slug": "fiction",
+  "name": "Fiction",
+  "imprint": "Knightlight Fiction",
+  "tagline": "Stories without boundaries",
+  "order": 1,
+  "instagram": "https://www.instagram.com/knightlightfiction/",
+  "description": "Character-driven novels for adult readers: modern frontier sagas, courtroom mysteries and romance.",
+  "subgenres": [
+    {
+      "slug": "western",
+      "name": "Western",
+      "description": "Modern frontier sagas of land, family and legacy.",
+      "adult": false
+    },
+    {
+      "slug": "crime-courtroom",
+      "name": "Crime & Courtroom",
+      "description": "Dark American murder mysteries, told through the trial itself.",
+      "adult": false
+    },
+    {
+      "slug": "romance",
+      "name": "Romance",
+      "description": "Adult romance with mature themes and explicit content.",
+      "adult": true
+    }
+  ]
+}

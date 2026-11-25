@@ -1,0 +1,17 @@
+{
+  "slug": "kids",
+  "name": "Kids",
+  "imprint": "Knightlight Kids",
+  "tagline": "Picture books for little readers",
+  "order": 5,
+  "instagram": "https://www.instagram.com/knightlightkids/",
+  "description": "Warm, funny picture books for ages 3–5, built around family and friendship.",
+  "subgenres": [
+    {
+      "slug": "picture-books",
+      "name": "Picture Books (ages 3–5)",
+      "description": "Short, bright stories to read together.",
+      "adult": false
+    }
+  ]
+}

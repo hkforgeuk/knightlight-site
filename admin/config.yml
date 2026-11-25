@@ -1,0 +1,220 @@
+# Knightlight Books admin (Decap CMS). Log in at <your site>/admin with GitHub.
+backend:
+  name: github
+  repo: hkforgeuk/knightlight-site
+  branch: main
+media_folder: img/uploads
+public_folder: /img/uploads
+collections:
+  - name: books
+    label: Books
+    label_singular: Book
+    folder: content/books
+    extension: json
+    format: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} – {{series}} #{{number}} ({{status}})"
+    sortable_fields: [title, series, number, status]
+    view_filters:
+      - {label: Out now, field: status, pattern: available}
+      - {label: Coming soon, field: status, pattern: coming_soon}
+      - {label: KDP / Amazon, field: kdp, pattern: true}
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: "Web address (lowercase-with-dashes, don't change once live)", name: slug, widget: string}
+      - {label: Show on site, name: active, widget: boolean, default: true, required: false}
+      - {label: Series, name: series, widget: relation, collection: series, search_fields: [title], value_field: slug, display_fields: [title]}
+      - {label: Book number in series, name: number, widget: number, value_type: int}
+      - {label: Author, name: author, widget: string, default: Hallam Knight}
+      - label: Status
+        name: status
+        widget: select
+        options: [{label: "Out now", value: available}, {label: "Coming soon", value: coming_soon}, {label: "In progress", value: in_progress}, {label: "Planned", value: planned}]
+      - {label: "Published on Amazon KDP (shows an Amazon button only)", name: kdp, widget: boolean, default: false}
+      - {label: "Price (£) for direct ePub", name: price, widget: number, value_type: float, step: 0.01, required: false}
+      - {label: "Payhip product link (Buy the ePub direct)", name: payhip_url, widget: string, required: false}
+      - {label: Kobo link, name: kobo_url, widget: string, required: false}
+      - {label: Google Play Books link, name: google_url, widget: string, required: false}
+      - {label: Amazon link, name: amazon_url, widget: string, required: false}
+      - {label: Free sample link, name: sample_url, widget: string, required: false}
+      - {label: Front cover, name: cover_front, widget: image, required: false}
+      - {label: Back cover, name: cover_back, widget: image, required: false}
+      - {label: "Tagline (one line, shown in italics)", name: tagline, widget: string, required: false}
+      - {label: "Blurb (blank line between paragraphs)", name: blurb, widget: text, required: false}
+      - {label: Format, name: format, widget: string, default: ePub, required: false}
+      - {label: Pages, name: pages, widget: string, required: false}
+      - {label: "Ages (e.g. 3–5)", name: age, widget: string, required: false}
+      - {label: Language, name: language, widget: select, options: ["English (UK)", "English (US)"], default: "English (UK)"}
+      - {label: Year published, name: published, widget: string, required: false}
+      - {label: "Adult content (18+ age check)", name: adult, widget: boolean, default: false, required: false}
+      - {label: Featured, name: featured, widget: boolean, default: false, required: false}
+  - name: series
+    label: Series
+    label_singular: Series
+    folder: content/series
+    extension: json
+    format: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: "Web address (lowercase-with-dashes)", name: slug, widget: string}
+      - {label: Show on site, name: active, widget: boolean, default: true, required: false}
+      - label: Genre
+        name: genre
+        widget: select
+        options: [{label: "Fiction", value: fiction}, {label: "Sci-Fi", value: sci-fi}, {label: "Fantasy", value: fantasy}, {label: "Manga", value: manga}, {label: "Kids", value: kids}]
+      - label: Sub-genre
+        name: subgenre
+        widget: select
+        options: [{label: "Fiction › Western", value: western}, {label: "Fiction › Crime & Courtroom", value: crime-courtroom}, {label: "Fiction › Romance", value: romance}, {label: "Sci-Fi › Space Opera", value: space-opera}, {label: "Manga › Fantasy Adventure", value: fantasy-adventure}, {label: "Kids › Picture Books (ages 3–5)", value: picture-books}]
+      - {label: Author, name: author, widget: string, default: Hallam Knight}
+      - {label: Description, name: description, widget: text}
+      - label: Status
+        name: status
+        widget: select
+        options: [{label: Ongoing, value: ongoing}, {label: Complete, value: complete}, {label: In development, value: in_development}]
+      - {label: "Total books planned (shows 'Planned' slots)", name: planned_books, widget: number, value_type: int, required: false}
+      - {label: Banner image (series page background), name: banner, widget: image, required: false}
+      - {label: Order within sub-genre, name: order, widget: number, value_type: int, default: 1}
+  - name: stories
+    label: Free short stories
+    label_singular: Free story
+    folder: content/stories
+    extension: json
+    format: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: "Web address (lowercase-with-dashes)", name: slug, widget: string}
+      - {label: Series, name: series, widget: relation, collection: series, search_fields: [title], value_field: slug, display_fields: [title]}
+      - {label: One-line hook, name: hook, widget: string}
+      - {label: Kit sign-up page link, name: signup_url, widget: string, required: false}
+      - {label: Image, name: cover, widget: image}
+      - {label: Order, name: order, widget: number, value_type: int, default: 1}
+  - name: site
+    label: Site settings & pages
+    files:
+      - label: Settings
+        name: settings
+        file: content/settings.json
+        fields:
+          - {label: Site name, name: site_name, widget: string}
+          - {label: Tagline, name: tagline, widget: string}
+          - {label: Intro (home page), name: intro, widget: text}
+          - {label: "Site address (e.g. https://knightlightbooks.co.uk)", name: url, widget: string}
+          - {label: "Launched (lets Google index the site)", name: launched, widget: boolean}
+          - {label: Email, name: email, widget: string}
+          - {label: Legal name, name: legal_name, widget: string}
+          - {label: Address (Terms & Privacy pages), name: address, widget: string}
+          - {label: Home page hero image, name: hero_image, widget: image, required: false}
+          - {label: "Featured book (web address)", name: featured_book, widget: relation, collection: books, search_fields: [title], value_field: slug, display_fields: [title]}
+          - {label: HK Forge strip text, name: hkforge_strip, widget: string}
+          - label: Links
+            name: links
+            widget: object
+            fields:
+              - {label: Payhip store, name: payhip, widget: string, required: false}
+              - {label: Instagram, name: instagram, widget: string, required: false}
+              - {label: Linktree, name: linktree, widget: string, required: false}
+              - {label: Kobo author page, name: kobo, widget: string, required: false}
+              - {label: Google Play author page, name: google_play, widget: string, required: false}
+              - {label: Amazon author page, name: amazon, widget: string, required: false}
+              - {label: HK Forge, name: hkforge, widget: string, required: false}
+          - label: Kit form IDs (sign-ups go to these forms)
+            name: kit_forms
+            widget: object
+            fields:
+              - {label: Reading list, name: reading_list, widget: string, required: false}
+              - {label: Fiction, name: fiction, widget: string, required: false}
+              - {label: Sci-Fi, name: sci-fi, widget: string, required: false}
+              - {label: Fantasy, name: fantasy, widget: string, required: false}
+              - {label: Manga, name: manga, widget: string, required: false}
+              - {label: Kids, name: kids, widget: string, required: false}
+              - {label: Free stories, name: free-stories, widget: string, required: false}
+      - label: "Page: About Knightlight Books"
+        name: page_about
+        file: content/pages/about.json
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Intro, name: intro, widget: string}
+          - {label: Body, name: body, widget: markdown, required: false}
+          - {label: Slug, name: slug, widget: hidden}
+      - label: "Page: FAQs"
+        name: page_faq
+        file: content/pages/faq.json
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Intro, name: intro, widget: string}
+          - {label: Body, name: body, widget: markdown, required: false}
+          - {label: Slug, name: slug, widget: hidden}
+      - label: "Page: Contact us"
+        name: page_contact
+        file: content/pages/contact.json
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Intro, name: intro, widget: string}
+          - {label: Body, name: body, widget: markdown, required: false}
+          - {label: Slug, name: slug, widget: hidden}
+      - label: "Page: Terms of sale"
+        name: page_terms
+        file: content/pages/terms.json
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Intro, name: intro, widget: string}
+          - {label: Body, name: body, widget: markdown, required: false}
+          - {label: Slug, name: slug, widget: hidden}
+      - label: "Page: Refund policy"
+        name: page_refunds
+        file: content/pages/refunds.json
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Intro, name: intro, widget: string}
+          - {label: Body, name: body, widget: markdown, required: false}
+          - {label: Slug, name: slug, widget: hidden}
+      - label: "Page: Privacy notice"
+        name: page_privacy
+        file: content/pages/privacy.json
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Intro, name: intro, widget: string}
+          - {label: Body, name: body, widget: markdown, required: false}
+          - {label: Slug, name: slug, widget: hidden}
+      - label: "Page: Cookies"
+        name: page_cookies
+        file: content/pages/cookies.json
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Intro, name: intro, widget: string}
+          - {label: Body, name: body, widget: markdown, required: false}
+          - {label: Slug, name: slug, widget: hidden}
+  - name: genres
+    label: Genres
+    label_singular: Genre
+    folder: content/genres
+    extension: json
+    format: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: name
+    fields:
+      - {label: Name, name: name, widget: string}
+      - {label: "Web address", name: slug, widget: string}
+      - {label: Imprint name, name: imprint, widget: string}
+      - {label: Tagline, name: tagline, widget: string}
+      - {label: Description, name: description, widget: text}
+      - {label: Imprint Instagram, name: instagram, widget: string, required: false}
+      - {label: Order, name: order, widget: number, value_type: int}
+      - label: Sub-genres
+        name: subgenres
+        widget: list
+        fields:
+          - {label: Name, name: name, widget: string}
+          - {label: "Web address", name: slug, widget: string}
+          - {label: Description, name: description, widget: string}
+          - {label: "Adult (18+ age check)", name: adult, widget: boolean, default: false}

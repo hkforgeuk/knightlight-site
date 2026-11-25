@@ -1,0 +1,30 @@
+{
+  "site_name": "Knightlight Books",
+  "tagline": "Stories worth getting lost in.",
+  "intro": "An independent publishing house for readers of every age, from Montana ranch sagas and deep-space drama to picture books for little readers.",
+  "url": "https://knightlightbooks.netlify.app",
+  "launched": false,
+  "email": "knightlightbooks@gmail.com",
+  "legal_name": "Hallam Knight",
+  "address": "27 Holly Drive, Aylesbury, Buckinghamshire, HP21 8TZ, United Kingdom",
+  "hero_image": "",
+  "featured_book": "where-the-river-runs",
+  "links": {
+    "payhip": "https://payhip.com/KnightlightPublishing",
+    "instagram": "https://www.instagram.com/knightlightbooks/",
+    "linktree": "https://linktr.ee/knightlightbooks",
+    "kobo": "",
+    "google_play": "",
+    "amazon": "",
+    "hkforge": "https://hkforge.co.uk"
+  },
+  "kit_forms": {
+    "reading_list": "",
+    "fiction": "",
+    "sci-fi": "",
+    "fantasy": "",
+    "manga": "",
+    "kids": ""
+  },
+  "hkforge_strip": "Handmade 3D-printed bookends, bookmarks and reading lamps from our sister workshop in Buckinghamshire."
+}
